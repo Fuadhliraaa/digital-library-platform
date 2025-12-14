@@ -1,0 +1,48 @@
+configuration:
+  scan: true
+  scanPeriod: 30 seconds
+
+  property:
+    - name: LOG_PATTERN
+      value: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    - name: LOG_FILE
+      value: logs/library-service.log
+
+  appender:
+    - name: CONSOLE
+      class: ch.qos.logback.core.ConsoleAppender
+      encoder:
+        pattern: ${LOG_PATTERN}
+
+    - name: FILE
+      class: ch.qos.logback.core.rolling.RollingFileAppender
+      file: ${LOG_FILE}
+      rollingPolicy:
+        class: ch.qos.logback.core.rolling.TimeBasedRollingPolicy
+        fileNamePattern: logs/library-service.%d{yyyy-MM-dd}.log
+        maxHistory: 14
+      encoder:
+        pattern: ${LOG_PATTERN}
+
+  root:
+    level: INFO
+    appender-ref:
+      - ref: CONSOLE
+      - ref: FILE
+
+  logger:
+    # App package (DETAIL)
+    - name: com.jesse.library
+      level: DEBUG
+
+    # Spring internal
+    - name: org.springframework
+      level: INFO
+
+    # Hibernate SQL
+    - name: org.hibernate.SQL
+      level: DEBUG
+
+    # Hibernate parameter binding (VERY VERBOSE)
+    - name: org.hibernate.orm.jdbc.bind
+      level: TRACE
