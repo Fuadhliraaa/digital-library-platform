@@ -1,5 +1,6 @@
-package com.portfolio.library.book.entity;
+package com.portfolio.library.author.entity;
 
+import com.portfolio.library.book.entity.Book;
 import com.portfolio.library.common.entity.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

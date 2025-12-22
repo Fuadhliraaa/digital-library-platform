@@ -32,8 +32,8 @@ configuration:
 
   logger:
     # App package (DETAIL)
-    - name: com.jesse.library
-      level: DEBUG
+    - name: com.portofolio.library
+      level: INFO
 
     # Spring internal
     - name: org.springframework
